@@ -3,15 +3,12 @@ fun main() {
 
     fun part1(input: List<String>) {
         var gammaRate = ""
-        val column = mutableListOf<Char>()
+        var column: List<Char>
 
         for (index in input[0].indices) {
-            for (value in input) {
-                column.add(value[index])
-            }
-            val digit = if (column.count { it == '0' } > column.count { it == '1'}) '0' else '1'
+            column = input.map { it[index] }
+            val digit = if (column.count { it == '0' } > (column.size / 2)) '0' else '1'
             gammaRate += digit
-            column.clear()
         }
 
         val epsilonRate = gammaRate
