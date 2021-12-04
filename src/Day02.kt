@@ -32,7 +32,7 @@ fun main() {
         println(horizontalPosition * depth)
     }
 
-    val testInput = readInput("Day02_test").map { it.split(" ") }
+    val testInput = readInput("Day02_data").map { it.split(" ") }
     part1(testInput)
     part2(testInput)
 }

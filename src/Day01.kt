@@ -12,7 +12,7 @@ fun main() {
             .countSuperiority()
     }
 
-    val testInput = readInput("Day01_test").map { it.toInt() }
+    val testInput = readInput("Day01_data").map { it.toInt() }
     println(part1(testInput))
     println(part2(testInput))
 }
