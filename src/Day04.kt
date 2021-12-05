@@ -87,9 +87,9 @@ fun isWinningBoard(
 ): Boolean {
     var isFinished = true
     run loop@{
-        rowOrColumn.forEach inner@{ number ->
+        rowOrColumn.forEach { number ->
             if (number.marked) {
-                return@inner
+                return@forEach
             } else {
                 isFinished = false
                 return@loop
