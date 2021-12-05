@@ -86,11 +86,14 @@ fun isWinningBoard(
     rowOrColumn: List<Number>,
 ): Boolean {
     var isFinished = true
-    rowOrColumn.forEach inner@{ number ->
-        if (number.marked) {
-            return@inner
-        } else {
-            isFinished = false
+    run loop@{
+        rowOrColumn.forEach inner@{ number ->
+            if (number.marked) {
+                return@inner
+            } else {
+                isFinished = false
+                return@loop
+            }
         }
     }
 
