@@ -106,12 +106,12 @@ fun isWinningBoard(
 }
 
 fun computeBoard(numberEntry: String, board: List<List<Number>>) {
-    val unMarked = board
+    val score = board
         .flatten()
         .filter { !it.marked }
         .map { it.value.toInt()}
         .fold(0) { acc, number ->  acc + number}
+        .times(numberEntry.toInt())
 
-    val score = unMarked * numberEntry.toInt()
     println("Score : $score")
 }
