@@ -45,30 +45,40 @@ fun main() {
     val data = testInput.map { it.replace(" -> ", ",").split(",") }
 
     println(part1(data))
+    coordinates.clear()
     println(part2(data))
 }
 
 fun updateCoordinates(baseX: Int?, baseY: Int?, oneEnd: Int, otherEnd: Int) {
 
     for (i in min(oneEnd, otherEnd)..max(oneEnd, otherEnd)) {
-        val coordinate = Pair(baseX ?: i, baseY ?: i)
-        if (coordinates.containsKey(coordinate)) {
-            coordinates[coordinate] = coordinates[coordinate]!!.plus(1)
-        } else {
-            coordinates[coordinate] = 1
-        }
+        addCoordinates(Pair(baseX ?: i, baseY ?: i))
     }
 }
 
 fun updateDiagonalCoordinates(x1: Int, y1: Int, x2:Int, y2: Int) {
-    val list = listOf(Pair(x1, y1), Pair(x2, y2))
-    list.forEach { coordinate ->
-        if (coordinates.containsKey(coordinate)) {
-            coordinates[coordinate] = coordinates[coordinate]!!.plus(1)
-        } else {
-            coordinates[coordinate] = 1
-        }
-    }
 
-    // to do
+    if (isFortyFiveDegrees(x1, y1, x2, y2)) {
+        var cpt = 0
+        do {
+            val newX1 = if (x1 < x2) x1 + cpt else x1 - cpt
+            val newY2 = if (y1 < y2) y1 + cpt else y1 - cpt
+
+            addCoordinates(Pair(newX1, newY2))
+            cpt++
+        } while (min(x1, x2) + cpt <= max(x1, x2) && min(y1, y2) + cpt <= max(y1, y2))
+    }
 }
+
+fun addCoordinates(coordinate: Pair<Int, Int>) {
+
+    if (coordinates.containsKey(coordinate)) {
+        coordinates[coordinate] = coordinates[coordinate]!!.plus(1)
+    } else {
+        coordinates[coordinate] = 1
+    }
+}
+
+fun isFortyFiveDegrees(x1: Int, y1: Int, x2:Int, y2: Int): Boolean =
+    max(x1, x2) - min (x1, x2) == max(y1, y2) - min (y1, y2)
+
