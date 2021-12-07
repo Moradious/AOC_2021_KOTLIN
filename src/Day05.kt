@@ -61,10 +61,10 @@ fun updateDiagonalCoordinates(x1: Int, y1: Int, x2:Int, y2: Int) {
     if (isFortyFiveDegrees(x1, y1, x2, y2)) {
         var cpt = 0
         do {
-            val newX1 = if (x1 < x2) x1 + cpt else x1 - cpt
-            val newY2 = if (y1 < y2) y1 + cpt else y1 - cpt
+            val newX = if (x1 < x2) x1 + cpt else x1 - cpt
+            val newY = if (y1 < y2) y1 + cpt else y1 - cpt
 
-            addCoordinates(Pair(newX1, newY2))
+            addCoordinates(Pair(newX, newY))
             cpt++
         } while (min(x1, x2) + cpt <= max(x1, x2) && min(y1, y2) + cpt <= max(y1, y2))
     }
